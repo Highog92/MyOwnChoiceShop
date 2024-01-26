@@ -1,6 +1,6 @@
 // https://github.com/Webudvikler-TechCollege/DSI/blob/main/Guides/Backend/3.0%20-%20NODEJS%20-%20Express%20Router.md
 
-// Skriv node index.js i terminalen
+// Skriv node --watch index.js i terminalen
 
 import dotenv from 'dotenv'
 import mysql from 'mysql2'
@@ -20,7 +20,17 @@ app.get("/", (req, res) => {
 
 // Contact route
 app.get("/api", (req, res) => {
-    db.query(`SELECT color_id, color_name FROM colors`, (error, result) => {
+    db.query(`SELECT color_id, color_name, color_price, in_store FROM colors`, (error, result) => {
+        if (error) {
+            console.error(error)
+        } else {
+            res.json(result)
+        }
+    })
+})
+
+app.get("/api", (req, res) => {
+    db.query(`SELECT user_id, LastName, FirstName, Email, Password, Address, PhoneNr, Registraded FROM user`, (error, result) => {
         if (error) {
             console.error(error)
         } else {
