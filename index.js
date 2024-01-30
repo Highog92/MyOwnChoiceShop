@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 
 // Contact route
 app.get("/api", (req, res) => {
-    db.query(`SELECT color_id, color_name, color_price, in_store FROM colors`, (error, result) => {
+    db.query(`SELECT color_id FROM colors`, (error, result) => {
         if (error) {
             console.error(error)
         } else {
@@ -29,15 +29,7 @@ app.get("/api", (req, res) => {
     })
 })
 
-app.get("/api", (req, res) => {
-    db.query(`SELECT user_id, LastName, FirstName, Email, Password, Address, PhoneNr, Registraded FROM user`, (error, result) => {
-        if (error) {
-            console.error(error)
-        } else {
-            res.json(result)
-        }
-    })
-})
+
 
 // Start server listening
 app.listen(8081, () => {
